@@ -1,0 +1,17 @@
+package me.bootblog.service;
+
+import lombok.RequiredArgsConstructor;
+import me.bootblog.bootblog.domain.Article;
+import me.bootblog.dto.AddArticleRequest;
+import me.bootblog.repository.BlogRepository;
+import org.springframework.stereotype.Service;
+
+@RequiredArgsConstructor
+@Service
+public class BlogService {
+    private final BlogRepository blogRepository;
+
+    public Article save(AddArticleRequest request) {
+        return blogRepository.save(request.toEntity());
+    }
+}

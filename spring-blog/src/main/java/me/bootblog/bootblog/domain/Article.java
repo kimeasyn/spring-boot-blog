@@ -2,7 +2,7 @@ package me.bootblog.bootblog.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
-//@Entity
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
