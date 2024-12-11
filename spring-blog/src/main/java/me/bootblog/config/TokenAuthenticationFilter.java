@@ -23,8 +23,8 @@ public class TokenAuthenticationFilter {
             HttpServletResponse response,
             FilterChain filterChain
     ) throws ServletException, IOException {
-        String autorization = request.getHeader(HEADER_AUTHORIZATION);
-        String token = getAccessToken(autorization);
+        String authorization = request.getHeader(HEADER_AUTHORIZATION);
+        String token = getAccessToken(authorization);
 
         if (tokenProvider.validToken(token)) {
             Authentication auth = tokenProvider.getAuthentication(token);
@@ -34,9 +34,9 @@ public class TokenAuthenticationFilter {
         filterChain.doFilter(request, response);
     }
 
-    private String getAccessToken(String autorizationHeader) {
-        if (autorizationHeader != null && autorizationHeader.startsWith(TOKEN_PREFIX)) {
-            return autorizationHeader.substring(TOKEN_PREFIX.length());
+    private String getAccessToken(String authorizationHeader) {
+        if (authorizationHeader != null && authorizationHeader.startsWith(TOKEN_PREFIX)) {
+            return authorizationHeader.substring(TOKEN_PREFIX.length());
         }
         return null;
     }
