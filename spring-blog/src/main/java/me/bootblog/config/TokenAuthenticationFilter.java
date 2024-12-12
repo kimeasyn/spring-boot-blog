@@ -8,16 +8,17 @@ import lombok.RequiredArgsConstructor;
 import me.bootblog.config.jwt.TokenProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
 @RequiredArgsConstructor
-public class TokenAuthenticationFilter {
+public class TokenAuthenticationFilter extends OncePerRequestFilter {
     private final TokenProvider tokenProvider;
     private final static String HEADER_AUTHORIZATION = "Authorization";
     private final static String TOKEN_PREFIX = "Bearer ";
 
-    @Overide
+    @Override
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
